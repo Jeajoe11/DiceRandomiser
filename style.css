@@ -19,7 +19,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Fjalla", "Space Grotesk", "Poppins", "Fugaz One", Verdana, Geneva, Tahoma, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Geneva, Tahoma, sans-serif;
+  font-family: Fjalla, "Space Grotesk", "Poppins", "Fugaz One", Verdana, Geneva, Tahoma, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Geneva, Tahoma, sans-serif;
   color: var(--font-clr-2);
   text-transform: uppercase
 }
