@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS | Dice Randomiser</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" type="image/png" href="/Unofficial_JavaScript_logo_2.svg.png">
+</head>
+
+<body>
+  <div class="container">
+    
+    <label id="myButton" for="checkbox">Roll</label>
+      <input type="radio" class="hard" name="Lvl" id="hard"><input type="radio" class="easy" name="Lvl" id="easy" checked><input type="radio" class="normal" name="Lvl" id="normal"><input type="checkbox" class="else" name="" id="checkbox">
+    <div class="dices">
+        <div class="dice easy">
+          <div id="my1Dice" class="top side">1</div>
+          <div id="my2Dice" class="bottom side">2</div>
+          <div id="my3Dice" class="left side">3</div>
+          <div id="my4Dice" class="right side">4</div>
+          <div id="my5Dice" class="back side">5</div>
+          <div id="my6Dice" class="front side">6</div>
+        </div>
+
+        <div class="dice normal">
+          <div id="my7Dice" class="top side">1</div>
+          <div id="my8Dice" class="bottom side">2</div>
+          <div id="my9Dice" class="left side">3</div>
+          <div id="my10Dice" class="right side">4</div>
+          <div id="my11Dice" class="back side">5</div>
+          <div id="my12Dice" class="front side">6</div>
+        </div>
+        <div class="dice hard">
+          <div id="my13Dice" class="top side">1</div>
+          <div id="my14Dice" class="bottom side">2</div>
+          <div id="my15Dice" class="left side">3</div>
+          <div id="my16Dice" class="right side">4</div>
+          <div id="my17Dice" class="back side">5</div>
+          <div id="my18Dice" class="front side">6</div>
+        </div>
+      </div>
+    <h2 editable contenteditable="">Guessing Game</h2>
+    <input type="text" name="" id="my1Name" placeholder="Enter your name">
+    <div class="guessing">
+      <!-- <div class="guessRadio"> -->
+        <!-- <input type="radio" name="Section" id="guessEasy" title="Easy" checked>
+        <input type="radio" name="Section" id="guessNormal" title="Normal">
+        <input type="radio" name="Section" id="guessHard" title="Hard"> -->
+      <!-- </div> -->
+      <div class="guessSections">
+        <section>
+          <h3>Easy</h3>
+        <label for="my1Text" id="my1Label">Waiting For Result...</label>
+        <input type="number" min="1" max="6" name="Guess" id="my1Text">
+          
+        </section>
+        <section>
+          <h3>Normal</h3>
+        <label for="my2Text" id="my2Label">Waiting For Result...</label>
+        <input type="number" min="1" max="6" name="Guess" id="my2Text">
+        </section>
+        <section>
+          <h3>Hard</h3>
+        <label for="my3Text" min="1" max="6" id="my3Label">Waiting For Result...</label>
+        <input type="number" name="Guess" id="my3Text">
+        </section>
+      </div>
+      
+    </div>
+    <h1>Invalid...</h1>
+    
+    <h1 id="my3H1">Waiting for Result...</h1>
+    <h1 id="my2H1">Waiting for Result...</h1>
+    <h1 id="my1H1">Waiting for Result...</h1>
+    <button id="mySkip">Skip</button>
+    
+    <div class="modes">
+      <h2>Mode :</h2>
+      <h2 id="myH2">Normal</h2>
+      <label for="easy" id="myEasy" default>Easy</label>
+      <label for="normal" id="myNormal">Normal</label>
+      <label for="hard" id="myHard">Hard</label>
+    </div>
+  <p class="bottomP">Click twice to start !</p>
+  </div>
+  
+  
+  <script src="script.js"></script>
+</body>
+
+</html>

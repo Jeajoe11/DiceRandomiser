@@ -1,0 +1,542 @@
+:root{
+  --font-clr: #2c2c2c;
+  --font-clr-2: #fff;
+  --font-clr-3: #212;
+  --bg-clr: #ec6065;
+}
+@font-face{
+  src: url("/Fonts/FjallaOne-Regular.ttf");
+  font-family: Fjalla;
+}
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@389&display=swap');
+html,
+body {
+  height: 100vh;
+  width: 100%;
+  /* overflow: clip; */
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Fjalla", "Space Grotesk", "Poppins", "Fugaz One", Verdana, Geneva, Tahoma, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Geneva, Tahoma, sans-serif;
+  color: var(--font-clr-2);
+  text-transform: uppercase
+}
+body{
+  background-color: var(--bg-clr);
+}
+.container{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: clip;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  color: var(--font-clr);
+
+  & .dices{
+    display: grid;
+    grid-template-rows: 200px 200px 200px;
+    height: 250px;
+    width: 300px;
+    gap: 3em;
+    /* background-color: red; */
+    overflow:clip;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    pointer-events: none;
+  }
+  & .dice{
+    z-index: 99999;
+    pointer-events: none;
+    order: 1;
+    position: relative;
+    height: 150px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    rotate: x 7.5deg;
+    transform: rotateY(15deg);
+    translate: 0 -50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    /* background-color: blue; */
+    transition: animation 0.3s ease, translate 0.3s ease, top 0.3s ease;
+
+    & .side{
+      --height: 150px;
+      font-size: 2em;
+      height: var(--height);
+      position: absolute;
+      aspect-ratio: 1;
+      background-color: floralwhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backface-visibility: hidden;
+      transition: 0.3s linear;
+      perspective: 1px;
+      transform: translateZ(calc(var(--height)/2));
+      color: var(--font-clr);
+
+      &.back{
+        rotate: y -180deg;
+      }
+      &.left{
+        rotate: y -270deg;
+      }
+      &.right{
+        rotate: y -90deg;
+      }
+      &.top{
+        rotate: x 90deg;
+      }
+      &.bottom{
+        rotate: x -90deg;
+      }
+    }
+  }
+}
+@keyframes rotateX{
+  0%{
+    transform: rotateY(0deg);
+  }
+  100%{
+    transform: rotateY(345deg);
+  }
+}
+@keyframes rotateY{
+  0%{
+    transform: rotateY(0deg);
+     
+  }
+  100%{
+    transform: rotateY(345deg);
+  }
+}
+@keyframes rotateYFast{
+  5%, 10%, 15%, 20%, 25%, 30%, 35%, 40%, 45%, 50%, 55%, 60%, 65%, 70%, 75%, 80%, 85%, 90%, 95%{
+    transform: rotateY(15deg);
+  }
+  2.5%, 7.5%, 12.5%, 17.5%, 22.5%, 27.5%, 32.5%, 37.5%, 42.5%, 52.5%, 57.5%, 62.5%, 67.5%, 72.5%, 77.5%, 82.5%, 87.5%, 92.5%, 100%{
+    transform: rotateY(345deg) rotateX(360deg);
+  }
+}
+@keyframes rotateXFast{
+  5%, 10%, 15%, 20%, 25%, 30%, 35%, 40%, 45%, 50%, 55%, 60%, 65%, 70%, 75%, 80%, 85%, 90%, 95%{
+    transform: rotateX(15deg);
+  }
+  2.5%, 7.5%, 12.5%, 17.5%, 22.5%, 27.5%, 32.5%, 37.5%, 42.5%, 52.5%, 57.5%, 62.5%, 67.5%, 72.5%, 77.5%, 82.5%, 87.5%, 92.5%, 100%{
+    transform: rotateX(360deg) rotateY(345deg);
+  }
+}
+#myButton{
+  height: 55px;
+  aspect-ratio: 1;
+  font-size: 1.5em;
+  border: 0.5px solid white;
+  background-color: #dd7e81;
+  color: white;
+  border-radius: 8px;
+  text-transform: uppercase;
+  position: relative;
+  translate: 0 50px;
+  cursor: pointer;
+  text-align: center;
+  order: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  
+  &:hover{
+    background-color: #e89699;
+  }
+}
+input[type="radio"]{
+  pointer-events: none;
+  order: 3;
+  opacity: 0;
+  position: relative;
+  bottom: 100px;
+
+  & ~ #checkbox:checked ~ .dices .dice.easy{
+    animation: rotateY 2.5s linear forwards;
+  }
+  & ~ #checkbox:checked ~ .dices .dice.normal{
+    animation: rotateY 2.5s linear forwards;
+  }
+  & ~ #checkbox:checked ~ .dices .dice.hard{
+    animation: rotateYFast 2.5s linear forwards;
+  }
+  & ~ #checkbox:not(:checked) ~ .dices .dice.easy{
+    animation: rotateX 2.5s linear forwards;
+  }
+  & ~ #checkbox:not(:checked) ~ .dices .dice.normal{
+    animation: rotateX 2.5s linear forwards;
+  }
+  & ~ #checkbox:not(:checked) ~ .dices .dice.hard{
+    animation: rotateXFast 2.5s linear forwards;
+  }
+}
+@keyframes bc-color{
+  from {
+    background-color: grey;
+    pointer-events: none;
+  }
+  to{
+    background-color: #fff;
+  }
+}
+.hard{
+  transition: translate 0.3s ease, top 0.3s ease;
+  
+  &:checked{
+
+    & ~ .dices ~ .guessing .guessSections{
+      translate: 0 -400px
+    }
+    & ~ :is(#my1H1, #my2H1){
+      display: none
+    }
+    & ~ .dices ~ .modes > #myHard{
+      background-color: var(--font-clr);
+      color: #fff;
+      width: 120px;
+
+      &::after{
+        content: "SELECTED";
+        position: absolute;
+        right: -82px;
+        font-weight: 700;
+      }
+    }
+    & ~ .dices .dice{
+      translate: 0 -380%;
+      position: relative;
+    }
+  }
+}
+.normal{
+  transition: translate 0.3s ease, top 0.3s ease;
+
+  &:checked {
+
+    & ~ .dices ~ .guessing .guessSections{
+      translate: 0 -200px;
+    }
+    & ~ :is(#my1H1, #my3H1){
+      display: none
+    }
+    & ~ .dices ~ .modes > #myNormal{
+      background-color: var(--font-clr);
+      color: #fff;
+      width: 120px;
+
+      &::after{
+        content: "SELECTED";
+        position: absolute;
+        right: -82px;
+        font-weight: 700;
+      }
+    }
+    & ~ .dices .dice{
+      translate: 0 -215%;
+      position: relative;
+    }
+  }
+
+}
+.easy{
+  transition: translate 0.3s ease, top 0.3s ease;
+  position: relative;
+
+  &:checked {
+
+    & ~ .dices ~ .guessing .guessSections{
+      translate: 0 0
+    }
+    & ~ :is(#my2H1, #my3H1){
+      display: none
+    }
+    & ~ .dices ~ .modes > #myEasy{
+      background-color: var(--font-clr);
+      color: #fff;
+      width: 120px;
+
+      &::after{
+        content: "SELECTED";
+        position: absolute;
+        right: -82px;
+        font-weight: 700;
+      }
+    }
+    & ~ .dices .dice{
+      translate: 0 -50%;
+      position: relative;
+    }
+  }
+  
+}
+[default]{
+
+  &::after{
+    content: "DEFAULT";
+    position: absolute;
+    right: -82px;
+    font-weight: 700;
+    color: white;
+  }
+}
+p{
+  color: white;
+  text-align: center;
+  position: sticky;
+  bottom: 60px
+}
+h1{
+  font-size: 2em;
+  text-transform: uppercase;
+  position: fixed;
+  top: 100px;
+  background-color: #ec6065;
+}
+#mySkip{
+  top: 0;
+  color: var(--bg-clr);
+  position: absolute;
+  font-size: 2em;
+  margin-block-start: 10px;
+  margin-inline: 80;
+  padding-block: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 200px;
+  border: 0;
+  width: 80%;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: letter-spacing 5s ease, background-color 2.5s ease;
+
+  &::after{
+    content: "(Wait Until Countdown (1.5s) To get Correct Answer)";
+    position: absolute;
+    width: 100%;
+    bottom: -25px;
+    color: white;
+    left: 50%;
+    translate: -50% 0;
+    font-size: 0.5em;
+    font-weight: 700;
+  }
+  &:hover{
+    letter-spacing: 5px;
+    background-color: #efebeb;
+  }
+}
+.modes{
+  height: 100%;
+  justify-content: center;
+  width: 100px;
+  align-items: center;
+  position: fixed;
+  left:0;
+  margin-inline-start: 20px;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-transform: uppercase;
+
+  & h2{
+    font-size: 2em;
+
+    &#myH2{
+      color: black;
+    }
+  }
+  & label{
+    text-transform: uppercase;
+    height: 40px;
+    width: 100px;
+    padding-inline: 20px;
+    font-size: 1.15em;
+    border-radius: 200px;
+    border: 0;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease;
+    color: var(--font-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+      background-color: var(--font-clr);
+      color: #fff;
+      width: 120px;
+    }
+    &:active{
+      background-color: #212;
+      color: var(--font-clr-2);
+    }
+  }
+}
+.guessing{
+  position: absolute;
+  right: 0;
+  margin-inline-end: 20px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 200px;
+  grid-template-rows: 100px 100px 100px;
+  gap: 7.5rem;
+  /* background-color: red; */
+  z-index: 2;
+  overflow: clip;
+    
+  & input[type="radio"]{
+    position: fixed;
+    z-index: -1;
+    opacity: 1;
+    pointer-events: visible;
+    top: -110px;
+
+    &:nth-child(1){
+      
+      &:checked{
+
+        & ~ .guessSections{
+          translate: 0 0
+        }
+      }
+    }
+    &:nth-child(2){
+      margin-inline-start: 20px;
+
+      &:checked{
+
+        & ~ .guessSections{
+          translate: 0 -200px;
+        }
+      }
+    }
+    &:nth-child(3){
+      margin-inline-start: 40px;
+
+      &:checked{
+
+        & ~ .guessSections{
+          translate: 0 -400px;
+        }
+      }
+    }
+  }
+  & .guessSections{
+    display: grid;
+    grid-template-rows: 200px 200px 200px;
+    grid-template-columns: 200px;
+    transition: translate 0.3s ease;
+  }
+  & .guessSections section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+    text-align: center;
+
+    &:nth-child(1){
+      grid-row: 1;
+    }
+    &:nth-child(2){
+      grid-row: 2;
+    }
+    &:nth-child(3){
+      grid-row: 3;
+    }
+    & h3{
+      font-size: 2em;
+      width: 100%;
+    }
+    & label{
+      font-weight: 700;
+      position: relative;
+      
+
+      &::after{
+        content: "Number 1-6";
+        position: absolute;
+        bottom: -80px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+    & input{
+      color: var(--font-clr);
+      padding-inline: 15px;
+      font-size: 1.1em;
+      padding-block: 10px;
+      width: 200px;
+      border-radius: 200px;
+      border: 0;
+      position: relative;
+
+      &:focus{
+        outline: 0;
+      }
+    }
+  }
+}
+h2[contenteditable=""]{
+  text-transform: uppercase;
+
+  &:focus{
+    outline: 0;
+  }
+}
+[editable]{
+  text-align: center;
+  position: relative;
+  width: 300px;
+
+  &:after{
+    content: "(Content is Editable)";
+    position: absolute;
+    inset: 30px 50%;
+    translate: -50% 0;
+    width: 100%;
+    font-size: 0.5em;
+  }
+}
+.bottomP{
+  position: fixed;
+  bottom: 50px;
+}
+input[type="checkbox"].else{
+  pointer-events: none;
+  opacity: 0;
+}
+input#my1Name{
+  color: var(--font-clr);
+  padding-inline: 15px;
+  font-size: 1.1em;
+  padding-block: 10px;
+  width: 200px;
+  margin-block-start: 20px; 
+  border-radius: 200px;
+  border: 0;
+  position: relative;
+  text-transform:none;
+
+  &:focus{
+    outline: 0;
+  }
+}
