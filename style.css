@@ -37,6 +37,10 @@ body{
   transform-style: preserve-3d;
   color: var(--font-clr);
 
+  > *{
+    color: blue
+  }
+
   & .dices{
     display: grid;
     grid-template-rows: 200px 200px 200px;
